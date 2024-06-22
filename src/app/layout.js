@@ -1,7 +1,10 @@
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Montserrat({
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "Create Next App",
