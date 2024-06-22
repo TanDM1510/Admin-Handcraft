@@ -35,7 +35,7 @@ const FestivalFilter = ({ handleChange }) => {
   return (
     <div className="h-10 w-full border mb-5 rounded-lg flex items-center px-5 py-6 gap-3 overflow-x-auto overflow-y-hidden">
       <Select
-        placeholder="Lọc theo trạng thái sản phẩm"
+        placeholder="Lọc theo trạng thái lễ hội"
         style={{
           width: 240,
         }}
@@ -53,7 +53,7 @@ const FestivalFilter = ({ handleChange }) => {
       />
       <Input
         className="min-w-[200px]"
-        placeholder="Tìm kiếm theo tên sản phẩm"
+        placeholder="Tìm kiếm theo tên lễ hội"
         prefix={
           <SearchOutlined
             style={{

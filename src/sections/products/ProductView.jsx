@@ -14,19 +14,35 @@ const ProductsView = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
-  const [isLoading, setIsLoading] = useState(false); // Add loading state
+  const [isLoading, setIsLoading] = useState(false);
   const page_size = 5;
+  const [status, setStatus] = useState(1);
+  const [festival_id, setFestival] = useState(null);
+  const [festivals, setFestivals] = useState([]);
 
   // Cache to store fetched data by page number
   const cache = useRef({});
 
-  const fetchData = async (filters = { page, page_size }) => {
+  const fetchFestivals = async () => {
+    try {
+      const response = await axiosClient.get(
+        "http://34.126.177.133:8881/v1/api/festival"
+      );
+      setFestivals(response.data);
+    } catch (error) {
+      console.error("Error fetching festivals", error);
+    }
+  };
+
+  const fetchData = async (
+    filters = { status, page, page_size, festival_id }
+  ) => {
     try {
       setIsLoading(true); // Set loading to true before fetch
       const response = await axiosClient.get(
         "http://34.126.177.133:8881/v1/api/product",
         {
-          params: { status: 1, ...filters },
+          params: { page_size: 5, ...filters },
         }
       );
       setTotal(response.total_items);
@@ -40,6 +56,7 @@ const ProductsView = () => {
   };
 
   useEffect(() => {
+    fetchFestivals();
     if (cache.current[page]) {
       setData(cache.current[page]); // Use cached data if available
     } else {
@@ -51,6 +68,8 @@ const ProductsView = () => {
     console.log("Selected filters:", filters);
     setPage(1); // Reset to first page
     cache.current = {}; // Clear cache
+    setStatus(filters.status);
+    setFestival(filters.festival_id);
     fetchData({ ...filters, page: 1 });
   };
 
@@ -104,7 +123,7 @@ const ProductsView = () => {
       {/* Header */}
       <ProductsHeader />
       {/* Filter */}
-      <ProductsFilter handleChange={handleChange} />
+      <ProductsFilter handleChange={handleChange} festivals={festivals} />
       {/* Table */}
       {isLoading ? (
         <Spin tip="Loading...">

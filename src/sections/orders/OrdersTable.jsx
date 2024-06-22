@@ -15,7 +15,7 @@ const OrdersTable = ({
   };
 
   return (
-    <Table dataSource={data} rowKey="id">
+    <Table dataSource={data} rowKey="id" pagination={false}>
       <Column title="Tên khách hàng" dataIndex="user_id" key="user_id" />
       <Column title="Địa chỉ khách hàng" dataIndex="address" key="address" />
       <Column
