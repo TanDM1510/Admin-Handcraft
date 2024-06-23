@@ -1,7 +1,21 @@
+import { useEffect, useRef } from "react";
+
 const ChatContent = ({ listMessage }) => {
+  const chatContainerRef = useRef(null);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [listMessage]);
+
   return (
-    <div className="flex-grow p-5 overflow-y-scroll h-[87%]">
-      {listMessage.map((message, id) => (
+    <div
+      className="flex-grow p-5 overflow-y-scroll h-[87%]"
+      ref={chatContainerRef}
+    >
+      {listMessage?.map((message, id) => (
         <div
           key={id}
           className={`flex ${
@@ -23,4 +37,5 @@ const ChatContent = ({ listMessage }) => {
     </div>
   );
 };
+
 export default ChatContent;
