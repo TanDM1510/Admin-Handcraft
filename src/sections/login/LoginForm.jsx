@@ -27,7 +27,7 @@ const LoginForm = ({ isRegister, setRegister }) => {
           HandCraft
         </h1>
         <p className="mb-10 mt-8 lg:mt-5 font-normal text-sm  lg:text-lg text-center ">
-          Welcome back you've been missed!
+          Welcome back you have been missed!
         </p>
         <Form
           name="basic"
