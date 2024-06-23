@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  frontend-admin-prm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:3000"
+    environment:
+      NODE_ENV: development
+    # volumes:
+    #   - /usr/src/app/node_modules
