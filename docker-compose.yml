@@ -1,13 +1,10 @@
-version: '3.8'
-
-services:
-  frontend-admin-prm:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "5173:3000"
+version: "3.8"
+services: 
+  hostie-prod:
+    container_name: hostie-prod
+    build: .
+    restart: always 
     environment:
-      NODE_ENV: development
-    # volumes:
-    #   - /usr/src/app/node_modules
+      - NODE_ENV=production
+    ports:
+      - 5173:3000
