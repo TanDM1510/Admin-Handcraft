@@ -1,6 +1,6 @@
 "use client";
 import axiosClient from "@/utils/customeAxios";
-import { Image, Input, Typography } from "antd";
+import { Input } from "antd";
 import React, { useEffect, useState } from "react";
 import OrderDetailHeader from "./OrderDetailHeader";
 import Link from "next/link";

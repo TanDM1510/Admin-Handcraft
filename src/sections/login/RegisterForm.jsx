@@ -14,12 +14,12 @@ const RegisterForm = ({ isRegister, setRegister }) => {
   return (
     <div className="lg:basis-1/2 w-full bg-gray rounded-lg">
       <p className="font-bold p-10 text-sm">
-        Already a member?{" "}
+        Already a member?
         <b
           className="text-blue-400 hover:underline cursor-pointer"
           onClick={() => setRegister(!isRegister)}
         >
-          Login now{" "}
+          Login now
         </b>
       </p>
       <div className="flex ml-auto mr-auto items-center justify-center flex-col h-2/3 max-w-[calc(100%-50px)] w-[400px]">

@@ -1,4 +1,4 @@
-import { DeleteFilled, EyeFilled, SignatureFilled } from "@ant-design/icons";
+import { EyeFilled } from "@ant-design/icons";
 import { Space, Table, Tag, Tooltip, Select } from "antd";
 import Link from "next/link";
 
@@ -71,11 +71,6 @@ const OrdersTable = ({
                 <EyeFilled />
               </Link>
             </Tooltip>
-            {/* <a className="hover:text-red-600" onClick={() => handleDelete(id)}>
-              <Tooltip title="Xóa đơn hàng">
-                <DeleteFilled />
-              </Tooltip>
-            </a> */}
           </Space>
         )}
       />

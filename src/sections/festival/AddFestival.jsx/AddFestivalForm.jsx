@@ -53,22 +53,6 @@ const AddFestivalForm = ({
               </Option>
             </Select>
           </Form.Item>
-          {/* <Form.Item
-            name="festival"
-            rules={[
-              {
-                required: true,
-                message: "Xin hãy chọn trạng thái sản phẩm!",
-              },
-            ]}
-          >
-            <Input
-              className="bg-gray-100"
-              name="festival"
-              value={product.festival}
-              onChange={handleChange}
-            />
-          </Form.Item> */}
         </div>
         <div className="mt-4">
           <label className="text-sm text-gray-400">Giới thiệu về lễ hội</label>

@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { LocalStorage } from "../utils/LocalStorage";
 import { refreshTokenPath, baseURL } from "./endpoint";
 const defaultHeader = {

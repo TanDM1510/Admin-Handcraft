@@ -1,6 +1,6 @@
 "use client";
 
-import { Form, Input, InputNumber, Select } from "antd";
+import { Form, Input, Select } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, Upload } from "antd";
 const { Option } = Select;

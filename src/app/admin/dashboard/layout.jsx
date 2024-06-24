@@ -8,9 +8,9 @@ import {
   TeamOutlined,
   TruckOutlined,
 } from "@ant-design/icons";
-import { Avatar, Breadcrumb, ConfigProvider, Layout, Menu, theme } from "antd";
+import { Breadcrumb, ConfigProvider, Layout, Menu, theme } from "antd";
 import Link from "next/link";
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 function getItem(href, label, key, icon, children) {
   return {
@@ -63,12 +63,12 @@ const DashBoardLayout = ({ children }) => {
             triggerColor: "black",
           },
           Menu: {
-            itemActiveBg: "white", // Màu nền của mục đang hoạt động
-            itemSelectedBg: "white", // Màu nền của mục được chọn
-            trackPadding: 4, // Khoảng cách giữa các mục
-            itemSelectedColor: "black", // Màu chữ của mục được chọn
-            itemColor: "white", // Màu chữ của các mục
-            itemHoverBg: "orange", // Màu nền khi di chuột lên mục
+            itemActiveBg: "white",
+            itemSelectedBg: "white",
+            trackPadding: 4,
+            itemSelectedColor: "black",
+            itemColor: "white",
+            itemHoverBg: "orange",
             itemActiveBg: "white",
             groupTitleColor: "white",
           },
@@ -112,22 +112,6 @@ const DashBoardLayout = ({ children }) => {
           />
         </Sider>
         <Layout>
-          {/* <Header className="bg-white flex  items-center px-8 py-10">
-            <p className="text-4xl font-semibold"></p>
-            <div className="min-w-[200px]  ml-auto bg-white border rounded-xl  flex items-center gap-4 px-10">
-              <div>
-                <Avatar
-                  style={{ backgroundColor: "#fde3cf", color: "#f56a00" }}
-                  size={"large"}
-                >
-                  T
-                </Avatar>
-              </div>
-
-              <span className="font-bold text-base">Dương Minh Tấn</span>
-              <span className="text-xs text-gray-400">Admin</span>
-            </div>
-          </Header> */}
           <Content
             style={{
               margin: "0 16px",
@@ -137,10 +121,7 @@ const DashBoardLayout = ({ children }) => {
               style={{
                 margin: "16px 0",
               }}
-            >
-              {/* <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item> */}
-            </Breadcrumb>
+            ></Breadcrumb>
             <div
               style={{
                 padding: 24,

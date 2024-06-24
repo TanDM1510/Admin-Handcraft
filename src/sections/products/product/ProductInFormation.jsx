@@ -1,5 +1,5 @@
 import { Carousel, Statistic } from "antd";
-import Image from "next/image";
+
 import React from "react";
 import CountUp from "react-countup";
 
