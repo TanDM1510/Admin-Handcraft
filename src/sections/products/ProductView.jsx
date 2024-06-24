@@ -1,8 +1,7 @@
 "use client";
-// import antd
+
 import React, { useEffect, useState, useRef } from "react";
 import { Modal, Pagination, message, Spin } from "antd";
-// Import library
 import axiosClient from "@/utils/customeAxios";
 import ProductsHeader from "./ProductsHeader";
 import ProductsFilter from "./ProductsFilter";
