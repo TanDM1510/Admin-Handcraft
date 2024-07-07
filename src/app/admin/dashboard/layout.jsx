@@ -22,12 +22,7 @@ function getItem(href, label, key, icon, children) {
 }
 const items = [
   getItem("/admin/dashboard", "Bảng điều khiển", "1", <DesktopOutlined />),
-  getItem(
-    "/admin/dashboard/users",
-    "Quản lí khách hàng",
-    "2",
-    <TeamOutlined />
-  ),
+
   getItem(
     "/admin/dashboard/products",
     "Quản lí sản phẩm",

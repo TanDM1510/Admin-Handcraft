@@ -15,41 +15,29 @@ const ChatView = () => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const connectSocket = () => {
-      const newSocket = io("http://34.126.177.133:5500");
-      newSocket.on("connect", () => {
-        console.log("Connected to the Socket.io server", newSocket.id);
-        newSocket.emit("subscribe", { room_id: "0" });
-        newSocket.off("message");
-        newSocket.on("message", (data) => {
-          console.log("message: ", data);
-          // Append new message to the existing list
-          setListMessage((prevMessages) => [data, ...prevMessages]);
-          fetchData();
-        });
+    const newSocket = io("http://34.126.177.133:5500");
+    newSocket.on("connect", () => {
+      console.log("Connected to the Socket.io server", newSocket.id);
+      newSocket.emit("subscribe", { room_id: "0" });
+      newSocket.on("message", (data) => {
+        console.log("message: ", data);
+        setListMessage((prevMessages) => [data, ...prevMessages]);
+        fetchData();
       });
+    });
 
-      newSocket.on("disconnect", () => {
-        console.log("Disconnected from the Socket.io server", newSocket.id);
-      });
+    newSocket.on("disconnect", () => {
+      console.log("Disconnected from the Socket.io server", newSocket.id);
+    });
 
-      newSocket.on("error", (error) => {
-        console.error("Socket error:", error);
-      });
+    newSocket.on("error", (error) => {
+      console.error("Socket error:", error);
+    });
 
-      setSocket(newSocket);
-
-      return () => {
-        newSocket.disconnect();
-      };
-    };
-
-    connectSocket();
+    setSocket(newSocket);
 
     return () => {
-      if (socket) {
-        socket.disconnect();
-      }
+      newSocket.disconnect();
     };
   }, []);
 
@@ -59,7 +47,6 @@ const ChatView = () => {
       const response = await axiosClient.get(
         "http://34.126.177.133:8881/v1/api/chat/18"
       );
-
       setListMessage(response);
       console.log(response);
     } catch (error) {
@@ -74,7 +61,7 @@ const ChatView = () => {
   }, []);
 
   const handlePostMessage = async () => {
-    setIsLoading(true); // Start loading
+    setIsLoading(true);
     try {
       const response = await axiosClient.post(
         "http://34.126.177.133:8881/v1/api/chat",
@@ -84,13 +71,14 @@ const ChatView = () => {
           message: newMessage,
         }
       );
-
-      setNewMessage("");
-      fetchData();
+      if (response) {
+        setNewMessage("");
+        fetchData();
+      }
     } catch (error) {
       console.error("Error posting message:", error);
     } finally {
-      setIsLoading(false); // Stop loading
+      setIsLoading(false);
     }
   };
 

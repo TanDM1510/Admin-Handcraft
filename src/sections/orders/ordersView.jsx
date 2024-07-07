@@ -96,7 +96,7 @@ const OrdersView = () => {
   return (
     <>
       <OrdersHeader />
-      <OrdersFilter handleChange={handleChange} />
+      {/* <OrdersFilter handleChange={handleChange} /> */}
       {isLoading ? (
         <Spin tip="Loading...">
           <OrdersTable data={[]} showConfirmModal={showConfirmModal} />
