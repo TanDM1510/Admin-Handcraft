@@ -29,7 +29,7 @@ const UpdateProductView = ({ id }) => {
   const fetchFestivalData = async () => {
     try {
       const response = await axiosClient.get(
-        "http://34.126.177.133:8881/v1/api/festival"
+        "https://prm-api.webbythien.com/v1/api/festival"
       );
       setFestivals(response.data);
     } catch (error) {

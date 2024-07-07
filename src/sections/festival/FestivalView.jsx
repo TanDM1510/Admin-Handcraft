@@ -24,7 +24,7 @@ const FestivalView = () => {
     try {
       setLoading(true);
       const response = await axiosClient.get(
-        "http://34.126.177.133:8881/v1/api/festival",
+        "https://prm-api.webbythien.com/v1/api/festival",
         {
           params: filters,
         }
@@ -69,7 +69,7 @@ const FestivalView = () => {
       const selectedData = data.find((item) => item.id === selectedId);
       if (selectedData) {
         await axiosClient.put(
-          `http://34.126.177.133:8881/v1/api/festival/${selectedId}`,
+          `https://prm-api.webbythien.com/v1/api/festival/${selectedId}`,
           {
             ...selectedData,
             status: 0,

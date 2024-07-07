@@ -80,12 +80,12 @@ const ProductsView = () => {
   const handleDelete = async () => {
     try {
       const data = await axiosClient.get(
-        `http://34.126.177.133:8881/v1/api/product/${selectedId}`
+        `https://prm-api.webbythien.com/v1/api/product/${selectedId}`
       );
 
       if (data) {
         const response = await axiosClient.put(
-          `http://34.126.177.133:8881/v1/api/product/${selectedId}`,
+          `https://prm-api.webbythien.com/v1/api/product/${selectedId}`,
           {
             ...data,
             festivals: [1],

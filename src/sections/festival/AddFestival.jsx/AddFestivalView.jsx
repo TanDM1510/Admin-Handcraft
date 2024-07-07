@@ -41,7 +41,7 @@ const AddFestivalView = () => {
   const handleSubmitForm = async () => {
     try {
       const response = await axiosClient.post(
-        "http://34.126.177.133:8881/v1/api/festival",
+        "https://prm-api.webbythien.com/v1/api/festival",
         festival
       );
       console.log("Festival added successfully:", response);

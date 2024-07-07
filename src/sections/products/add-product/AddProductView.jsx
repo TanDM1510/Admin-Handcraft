@@ -15,7 +15,7 @@ const AddProductView = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axiosClient.get(
-        "http://34.126.177.133:8881/v1/api/festival"
+        "https://prm-api.webbythien.com/v1/api/festival"
       );
       setFestival(response.data);
     };
@@ -68,7 +68,7 @@ const AddProductView = () => {
   const handleSubmitForm = async () => {
     try {
       const addProduct = await axiosClient.post(
-        "http://34.126.177.133:8881/v1/api/product",
+        "https://prm-api.webbythien.com/v1/api/product",
         { ...product, festivals: selectedFestivals, status: status }
       );
       message.success("Tạo sản phẩm thành công");

@@ -27,7 +27,7 @@ const UpdateFestivalView = ({ id }) => {
     const fetchFestivalData = async () => {
       try {
         const response = await axiosClient.get(
-          `http://34.126.177.133:8881/v1/api/festival/`
+          `https://prm-api.webbythien.com/v1/api/festival/`
         );
 
         if (response) {
@@ -92,7 +92,7 @@ const UpdateFestivalView = ({ id }) => {
   const handleSubmit = async (values) => {
     try {
       await axiosClient.put(
-        `http://34.126.177.133:8881/v1/api/festival/${festivalId}`,
+        `https://prm-api.webbythien.com/v1/api/festival/${festivalId}`,
         {
           ...values,
           images: fileList,
@@ -190,7 +190,7 @@ const UpdateFestivalView = ({ id }) => {
           <div className="lg:w-[30%] w-full border rounded-lg px-3 p-5">
             <p className="font-bold text-lg">Hình ảnh lễ hội</p>
             <Upload
-              action="http://34.126.177.133:8881/v1/api/product/upload-image"
+              action="https://prm-api.webbythien.com/v1/api/product/upload-image"
               listType="picture"
               defaultFileList={[fileList]}
               onChange={handleUploadChange}

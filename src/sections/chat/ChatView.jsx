@@ -15,7 +15,7 @@ const ChatView = () => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io("http://34.126.177.133:5500");
+    const newSocket = io("https://prm-socket.webbythien.com");
     newSocket.on("connect", () => {
       console.log("Connected to the Socket.io server", newSocket.id);
       newSocket.emit("subscribe", { room_id: "0" });
@@ -45,7 +45,7 @@ const ChatView = () => {
     setIsLoading(true);
     try {
       const response = await axiosClient.get(
-        "http://34.126.177.133:8881/v1/api/chat/18"
+        "https://prm-api.webbythien.com/v1/api/chat/18"
       );
       setListMessage(response);
       console.log(response);
@@ -64,7 +64,7 @@ const ChatView = () => {
     setIsLoading(true);
     try {
       const response = await axiosClient.post(
-        "http://34.126.177.133:8881/v1/api/chat",
+        "https://prm-api.webbythien.com/v1/api/chat",
         {
           sender_id: 0,
           reciever_id: 18,

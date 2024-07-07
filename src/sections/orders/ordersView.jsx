@@ -25,7 +25,7 @@ const OrdersView = () => {
     try {
       setIsLoading(true); // Set loading to true before fetch
       const response = await axiosClient.get(
-        "http://34.126.177.133:8881/v1/api/order",
+        "https://prm-api.webbythien.com/v1/api/order",
         {
           params: { ...filters },
         }
@@ -65,7 +65,7 @@ const OrdersView = () => {
 
     try {
       const response = await axiosClient.put(
-        `http://34.126.177.133:8881/v1/api/order/${selectedOrder}`,
+        `https://prm-api.webbythien.com/v1/api/order/${selectedOrder}`,
         { status: selectedStatus }
       );
       console.log("Updated Order Status Response:", response.data);
