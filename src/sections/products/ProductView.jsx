@@ -25,7 +25,7 @@ const ProductsView = () => {
   const fetchFestivals = async () => {
     try {
       const response = await axiosClient.get(
-        "http://34.126.177.133:8881/v1/api/festival"
+        "https://prm-api.webbythien.com/v1/api/festival"
       );
       setFestivals(response.data);
     } catch (error) {
@@ -39,7 +39,7 @@ const ProductsView = () => {
     try {
       setIsLoading(true); // Set loading to true before fetch
       const response = await axiosClient.get(
-        "http://34.126.177.133:8881/v1/api/product",
+        "https://prm-api.webbythien.com/v1/api/product",
         {
           params: { page_size: 5, ...filters },
         }
