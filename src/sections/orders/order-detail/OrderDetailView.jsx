@@ -61,7 +61,7 @@ const OrderDetailView = ({ id }) => {
 
           <div className="w-full rounded-lg p-10 border mt-5 ">
             <h2 className="font-semibold text-2xl mb-5 ">Thông tin đơn hàng</h2>
-            {data?.product?.map((p) => (
+            {data?.order.products?.map((p) => (
               <div
                 key={p.id}
                 className="flex items-center justify-between mb-3 border-b-2"
@@ -86,7 +86,7 @@ const OrderDetailView = ({ id }) => {
             ))}
             <div className="ml-auto w-[300px]">
               <p className="text-lg flex justify-between mb-3">
-                Tổng tiền sản phẩm :
+                Tiền sản phẩm :
                 <span> {data?.order.total_product_price} VND</span>
               </p>
               <p className="text-lg flex justify-between mb-3">

@@ -37,10 +37,10 @@ const OrdersTable = ({
             </Option>
             <Option value={1}>
               {" "}
-              <Tag color="blue">Đang giao</Tag>
+              <Tag color="blue">Đang xử lý</Tag>
             </Option>
             <Option value={2}>
-              <Tag color="green">Hoàn thành</Tag>{" "}
+              <Tag color="green">Xác nhận</Tag>{" "}
             </Option>
             <Option value={3}>
               <Tag color="green">Đã thanh toán (online)</Tag>
@@ -49,13 +49,13 @@ const OrdersTable = ({
               <Tag color="yellow">Ship code</Tag>
             </Option>
             <Option value={5}>
-              <Tag color="red">Hide</Tag>
+              <Tag color="red">Đơn hàng đã bị loại</Tag>
             </Option>
             <Option value={6}>
-              <Tag color="yellow">Refunding</Tag>
+              <Tag color="yellow">Đang hoàn trả </Tag>
             </Option>
             <Option value={7}>
-              <Tag color="red">Refunded</Tag>
+              <Tag color="red">Đã hoàn trả</Tag>
             </Option>
           </Select>
         )}

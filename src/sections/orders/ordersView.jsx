@@ -18,12 +18,11 @@ const OrdersView = () => {
   const [isLoading, setIsLoading] = useState(false);
   const per_page = 5;
 
-  // Cache to store fetched data by page number
   const cache = useRef({});
 
   const fetchData = async (filters = { page, per_page }) => {
     try {
-      setIsLoading(true); // Set loading to true before fetch
+      setIsLoading(true);
       const response = await axiosClient.get(
         "https://prm-api.webbythien.com/v1/api/order",
         {
@@ -31,18 +30,18 @@ const OrdersView = () => {
         }
       );
       setTotal(response.total_count);
-      cache.current[filters.page] = response.orders; // Store response data in cache
+      cache.current[filters.page] = response.orders;
       setData(response.orders);
     } catch (error) {
       console.error("Error fetching data", error);
     } finally {
-      setIsLoading(false); // Set loading to false after fetch
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     if (cache.current[page]) {
-      setData(cache.current[page]); // Use cached data if available
+      setData(cache.current[page]);
     } else {
       fetchData();
     }
@@ -50,8 +49,8 @@ const OrdersView = () => {
 
   const handleChange = (filters) => {
     console.log("Selected filters:", filters);
-    setPage(1); // Reset to first page
-    cache.current = {}; // Clear cache
+    setPage(1);
+    cache.current = {};
     fetchData({ ...filters, page: 1 });
   };
 
@@ -96,7 +95,7 @@ const OrdersView = () => {
   return (
     <>
       <OrdersHeader />
-      {/* <OrdersFilter handleChange={handleChange} /> */}
+
       {isLoading ? (
         <Spin tip="Loading...">
           <OrdersTable data={[]} showConfirmModal={showConfirmModal} />
