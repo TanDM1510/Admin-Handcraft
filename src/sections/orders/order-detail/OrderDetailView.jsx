@@ -11,7 +11,7 @@ const OrderDetailView = ({ id }) => {
   const orderId = id.id;
   const fetchData = async () => {
     const response = await axiosClient.get(
-      `http://34.126.177.133:8881/v1/api/order/${orderId}`
+      `https://prm-api.webbythien.com/v1/api/order/${orderId}`
     );
     setData(response);
     setIsLoading(true);

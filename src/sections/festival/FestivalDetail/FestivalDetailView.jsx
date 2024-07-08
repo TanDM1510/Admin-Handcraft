@@ -13,9 +13,10 @@ const FestivalDetailView = ({ id }) => {
     const fetchData = async () => {
       try {
         const response = await axiosClient.get(
-          `https://prm-api.webbythien.com/v1/api/festival/`
+          `https://prm-api.webbythien.com/v1/api/festival`
         );
         if (response) {
+          console.log(response);
           const filteredFestival = response.data.find(
             (fest) => fest.id == festivalId
           );

@@ -40,7 +40,7 @@ const UpdateProductView = ({ id }) => {
     const fetchProductData = async () => {
       try {
         const response = await axiosClient.get(
-          `http://34.126.177.133:8881/v1/api/product/${productId}`
+          `https://prm-api.webbythien.com/v1/api/product/${productId}`
         );
         setProduct(response);
         setSelectedFestivals(response.festivals.map((f) => f.id));
@@ -96,7 +96,7 @@ const UpdateProductView = ({ id }) => {
   const handleSubmitForm = async (values) => {
     try {
       const response = await axiosClient.put(
-        `http://34.126.177.133:8881/v1/api/product/${productId}`,
+        `https://prm-api.webbythien.com/v1/api/product/${productId}`,
         {
           ...values,
           festivals: selectedFestivals,
