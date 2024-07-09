@@ -1,19 +1,37 @@
 "use client";
 import React from "react";
-import { Divider, Form, Input } from "antd";
+import { Divider, Form, Input, message } from "antd";
 import Link from "next/link";
 import google from "../../assets/search.png";
 import Image from "next/image";
+import axios from "axios";
+
 const LoginForm = ({ isRegister, setRegister }) => {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const onFinish = async (values) => {
+    try {
+      const response = await axios.post(
+        "http://34.126.177.133:8088/auth/signIn",
+        values
+      );
+
+      console.log("Success:", response.data);
+
+      message.success("Login successful!");
+    } catch (error) {
+      console.error("Failed:", error);
+      message.error(
+        "Login failed. Please check your credentials and try again."
+      );
+    }
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
   return (
     <div className="lg:basis-1/2 w-full bg-gray rounded-lg">
-      <p className="font-bold p-10 text-sm  lg:mb-6 mb-10">
+      <p className="font-bold p-10 text-sm lg:mb-6 mb-10">
         Not a member?{" "}
         <b
           className="text-blue-400 hover:underline cursor-pointer"
@@ -26,7 +44,7 @@ const LoginForm = ({ isRegister, setRegister }) => {
         <h1 className="font-bold text-5xl text-center custom-font ">
           HandCraft
         </h1>
-        <p className="mb-10 mt-8 lg:mt-5 font-normal text-sm  lg:text-lg text-center ">
+        <p className="mb-10 mt-8 lg:mt-5 font-normal text-sm lg:text-lg text-center ">
           Welcome back you have been missed!
         </p>
         <Form
@@ -87,7 +105,7 @@ const LoginForm = ({ isRegister, setRegister }) => {
         </Form>
         <Divider>Or Login with</Divider>
         <button
-          className="border-white border-2  mt-5 w-full text-black font-bold transition-all delay-100 ease-in-out duration-150 py-3 rounded-lg hover:bg-black hover:text-white"
+          className="border-white border-2 mt-5 w-full text-black font-bold transition-all delay-100 ease-in-out duration-150 py-3 rounded-lg hover:bg-black hover:text-white"
           type="submit"
         >
           <Image

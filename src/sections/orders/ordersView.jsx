@@ -30,20 +30,27 @@ const OrdersView = () => {
         }
       );
       setTotal(response.total_count);
-      cache.current[filters.page] = response.orders;
-      setData(response.orders);
+      console.log(response.orders);
+      const data = response.orders.filter((p) => p.status !== 5);
+      cache.current[filters.page] = data;
+
+      setData(data);
     } catch (error) {
       console.error("Error fetching data", error);
     } finally {
       setIsLoading(false);
     }
   };
-
+  const fetchUser = async () => {
+    const response = await axiosClient.get("http://34.126.177.133:8088/user");
+    console.log(response);
+  };
   useEffect(() => {
     if (cache.current[page]) {
       setData(cache.current[page]);
     } else {
       fetchData();
+      fetchUser();
     }
   }, [page]);
 
@@ -112,7 +119,7 @@ const OrdersView = () => {
       />
       <Modal
         title="Xác nhận cập nhật trạng thái"
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleUpdateStatus}
         onCancel={handleCancel}
         okText="Cập nhật"
