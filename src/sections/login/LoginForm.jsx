@@ -44,9 +44,7 @@ const LoginForm = ({ isRegister, setRegister }) => {
         </b>
       </p>
       <div className="flex ml-auto mr-auto items-center justify-center flex-col h-2/3 max-w-[calc(100%-50px)] w-[400px]">
-        <h1 className="font-bold text-5xl text-center custom-font ">
-          HandCraft
-        </h1>
+        <h1 className="font-bold text-5xl text-center custom-font ">Bamboo</h1>
         <p className="mb-10 mt-8 lg:mt-5 font-normal text-sm lg:text-lg text-center ">
           Welcome back you have been missed!
         </p>
