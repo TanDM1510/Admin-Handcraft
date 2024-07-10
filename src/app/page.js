@@ -1,5 +1,9 @@
-import Image from "next/image";
+import AuthProvider from "@/sections/auth-provider/AuthRediecToLogin";
 
 export default function Home() {
-  return <p className="ml-auto mr-auto text-3xl"> Dương minh tấn</p>;
+  return (
+    <AuthProvider>
+      <p className="ml-auto mr-auto text-3xl"> Dương minh tấn</p>
+    </AuthProvider>
+  );
 }
