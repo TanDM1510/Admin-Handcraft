@@ -96,7 +96,7 @@ const ProductsView = () => {
         );
         console.log("Updated Product Response:", response.data);
         message.success("Xóa sản phẩm thành công");
-        fetchData({ page, page_size });
+        fetchData({ status, page, page_size });
       }
     } catch (error) {
       console.error("Error:", error);
