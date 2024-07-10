@@ -12,7 +12,7 @@ const DashBoardView = () => {
   return (
     <div className="bg-white">
       <h1 className="text-center mb-8 font-bold text-4xl text-black">
-        Doanh số của <span className="custom-font">HandCraft</span>
+        Doanh số của <span className="custom-font">Bamboo</span>
       </h1>
       <div className="flex flex-col lg:flex-row gap-5 w-full border-t pt-10 border-gray-700">
         <Card className="flex-1 shadow-2xl border-none bg-black">

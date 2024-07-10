@@ -89,12 +89,12 @@ const DashBoardLayout = ({ children }) => {
             {!collapsed ? (
               <Link href={"/auth"}>
                 <p className="font-bold text-3xl text-center custom-font ">
-                  HandCraft
+                  Bamboo
                 </p>
               </Link>
             ) : (
               <Link href={"/auth"}>
-                <p className="font-bold text-3xl text-center custom-font ">H</p>
+                <p className="font-bold text-3xl text-center custom-font ">B</p>
               </Link>
             )}
           </div>
@@ -135,7 +135,7 @@ const DashBoardLayout = ({ children }) => {
               textAlign: "center",
             }}
           >
-            Ant Design ©{new Date().getFullYear()} Created by Ant UED
+            Bamboo ©{new Date().getFullYear()}
           </Footer>
         </Layout>
       </Layout>

@@ -16,7 +16,6 @@ const FestivalDetailView = ({ id }) => {
           `https://prm-api.webbythien.com/v1/api/festival`
         );
         if (response) {
-          console.log(response);
           const filteredFestival = response.data.find(
             (fest) => fest.id == festivalId
           );
