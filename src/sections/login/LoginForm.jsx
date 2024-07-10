@@ -16,6 +16,8 @@ const LoginForm = ({ isRegister, setRegister }) => {
         values
       );
       console.log("Success:", response.data);
+      const token = response.data.result.token;
+      localStorage.setItem("authToken", token);
       message.success("Login successful!");
       router.push("/admin/dashboard");
     } catch (error) {

@@ -1,9 +1,11 @@
 import { redirect } from "next/navigation";
-const AuthProvider = ({ children }) => {
+
+const IsLogin = ({ children }) => {
   const token = localStorage.getItem("authToken");
-  if (!token) {
-    redirect("/auth");
+
+  if (token) {
+    redirect("/admin/dashboard");
   }
   return <>{children}</>;
 };
-export default AuthProvider;
+export default IsLogin;
