@@ -5,12 +5,12 @@ import {
   DesktopOutlined,
   ProfileOutlined,
   ShopOutlined,
-  TeamOutlined,
   TruckOutlined,
 } from "@ant-design/icons";
 import { Breadcrumb, ConfigProvider, Layout, Menu, theme } from "antd";
 import Link from "next/link";
 import AuthProvider from "@/sections/auth-provider/AuthProvider";
+import { useRouter } from "next/navigation";
 const { Content, Footer, Sider } = Layout;
 
 function getItem(href, label, key, icon, children) {
@@ -49,7 +49,11 @@ const DashBoardLayout = ({ children }) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
+  const router = useRouter();
+  const handleLogout = () => {
+    localStorage.clear("authToken");
+    router.push("/auth");
+  };
   return (
     <AuthProvider>
       <ConfigProvider
@@ -109,6 +113,23 @@ const DashBoardLayout = ({ children }) => {
               items={items}
               style={{ backgroundColor: "black", color: "white" }}
             />
+            <div className="flex justify-center items-center py-10">
+              {!collapsed ? (
+                <button
+                  onClick={handleLogout}
+                  className="font-normal text-xl text-center custom-font "
+                >
+                  Logout
+                </button>
+              ) : (
+                <button
+                  onClick={handleLogout}
+                  className="font-normal text-xl text-center custom-font "
+                >
+                  Q
+                </button>
+              )}
+            </div>
           </Sider>
           <Layout>
             <Content

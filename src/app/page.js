@@ -1,5 +1,7 @@
 import AuthProvider from "@/sections/auth-provider/AuthRediecToLogin";
-
+export const metadata = {
+  title: "Bamboo",
+};
 export default function Home() {
   return (
     <AuthProvider>

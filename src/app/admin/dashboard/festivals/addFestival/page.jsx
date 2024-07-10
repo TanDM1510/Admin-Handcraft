@@ -1,5 +1,7 @@
 import AddFestivalView from "@/sections/festival/AddFestival.jsx/AddFestivalView";
-
+export const metadata = {
+  title: "Lễ hội",
+};
 const page = () => {
   return (
     <div>
