@@ -1,11 +1,18 @@
-import { redirect } from "next/navigation";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const IsLogin = ({ children }) => {
-  const token = localStorage.getItem("authToken");
+  const router = useRouter();
 
-  if (token) {
-    redirect("/admin/dashboard");
-  }
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+
+    if (token) {
+      router.push("/admin/dashboard");
+    }
+  }, [router]);
+
   return <>{children}</>;
 };
+
 export default IsLogin;
