@@ -121,6 +121,7 @@ const UpdateProductView = ({ id }) => {
             cost: product?.cost,
             status: product?.status,
             weight: product?.weight,
+            amount: product?.amount,
             description: product?.description,
             discount: product?.discount,
             festivals: product?.festivals?.map((festival) => festival.id),

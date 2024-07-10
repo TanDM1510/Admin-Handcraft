@@ -38,6 +38,7 @@ const ProductInFormation = ({ product }) => {
             ))}
           </p>
           <p className="mb-6 text-lg">{product?.description}.</p>
+          <p className="mb-6 text-lg">Số lượng : {product?.amount}.</p>
           <Statistic
             className="text-orange-400"
             valueStyle={{
