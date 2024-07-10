@@ -5,18 +5,19 @@ import Link from "next/link";
 import google from "../../assets/search.png";
 import Image from "next/image";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const LoginForm = ({ isRegister, setRegister }) => {
+  const router = useRouter();
   const onFinish = async (values) => {
     try {
       const response = await axios.post(
-        "http://34.126.177.133:8088/auth/signIn",
+        "https://auth-api.webbythien.com/auth/signIn",
         values
       );
-
       console.log("Success:", response.data);
-
       message.success("Login successful!");
+      router.push("/admin/dashboard");
     } catch (error) {
       console.error("Failed:", error);
       message.error(

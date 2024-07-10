@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import { Breadcrumb, ConfigProvider, Layout, Menu, theme } from "antd";
 import Link from "next/link";
+import AuthProvider from "@/sections/auth-provider/AuthProvider";
 const { Content, Footer, Sider } = Layout;
 
 function getItem(href, label, key, icon, children) {
@@ -50,96 +51,100 @@ const DashBoardLayout = ({ children }) => {
   } = theme.useToken();
 
   return (
-    <ConfigProvider
-      theme={{
-        components: {
-          Layout: {
-            triggerBg: "white",
-            triggerColor: "black",
+    <AuthProvider>
+      <ConfigProvider
+        theme={{
+          components: {
+            Layout: {
+              triggerBg: "white",
+              triggerColor: "black",
+            },
+            Menu: {
+              itemActiveBg: "white",
+              itemSelectedBg: "white",
+              trackPadding: 4,
+              itemSelectedColor: "black",
+              itemColor: "white",
+              itemHoverBg: "orange",
+              itemActiveBg: "white",
+              groupTitleColor: "white",
+            },
           },
-          Menu: {
-            itemActiveBg: "white",
-            itemSelectedBg: "white",
-            trackPadding: 4,
-            itemSelectedColor: "black",
-            itemColor: "white",
-            itemHoverBg: "orange",
-            itemActiveBg: "white",
-            groupTitleColor: "white",
-          },
-        },
 
-        token: {
-          fontFamily: "inherit",
-        },
-      }}
-    >
-      <Layout
-        style={{
-          minHeight: "100vh",
+          token: {
+            fontFamily: "inherit",
+          },
         }}
       >
-        <Sider
-          collapsible
-          collapsed={collapsed}
-          onCollapse={(value) => setCollapsed(value)}
-          style={{ backgroundColor: "black", color: "white" }}
+        <Layout
+          style={{
+            minHeight: "100vh",
+          }}
         >
-          <div className="flex justify-center items-center py-10">
-            {!collapsed ? (
-              <Link href={"/auth"}>
-                <p className="font-bold text-3xl text-center custom-font ">
-                  Bamboo
-                </p>
-              </Link>
-            ) : (
-              <Link href={"/auth"}>
-                <p className="font-bold text-3xl text-center custom-font ">B</p>
-              </Link>
-            )}
-          </div>
-
-          <Menu
-            defaultSelectedKeys={["1"]}
-            mode="inline"
-            items={items}
+          <Sider
+            collapsible
+            collapsed={collapsed}
+            onCollapse={(value) => setCollapsed(value)}
             style={{ backgroundColor: "black", color: "white" }}
-          />
-        </Sider>
-        <Layout>
-          <Content
-            style={{
-              margin: "0 16px",
-            }}
           >
-            <Breadcrumb
-              style={{
-                margin: "16px 0",
-              }}
-            ></Breadcrumb>
-            <div
-              style={{
-                padding: 24,
-                minHeight: 360,
-                height: "86vh",
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-              className="overflow-auto"
-            >
-              {children}
+            <div className="flex justify-center items-center py-10">
+              {!collapsed ? (
+                <Link href={"/auth"}>
+                  <p className="font-bold text-3xl text-center custom-font ">
+                    Bamboo
+                  </p>
+                </Link>
+              ) : (
+                <Link href={"/auth"}>
+                  <p className="font-bold text-3xl text-center custom-font ">
+                    B
+                  </p>
+                </Link>
+              )}
             </div>
-          </Content>
-          <Footer
-            style={{
-              textAlign: "center",
-            }}
-          >
-            Bamboo ©{new Date().getFullYear()}
-          </Footer>
+
+            <Menu
+              defaultSelectedKeys={["1"]}
+              mode="inline"
+              items={items}
+              style={{ backgroundColor: "black", color: "white" }}
+            />
+          </Sider>
+          <Layout>
+            <Content
+              style={{
+                margin: "0 16px",
+              }}
+            >
+              <Breadcrumb
+                style={{
+                  margin: "16px 0",
+                }}
+              ></Breadcrumb>
+              <div
+                style={{
+                  padding: 24,
+                  minHeight: 360,
+                  height: "86vh",
+                  background: colorBgContainer,
+                  borderRadius: borderRadiusLG,
+                }}
+                className="overflow-auto"
+              >
+                {children}
+              </div>
+            </Content>
+            <Footer
+              style={{
+                textAlign: "center",
+              }}
+            >
+              Bamboo ©{new Date().getFullYear()}
+            </Footer>
+          </Layout>
         </Layout>
-      </Layout>
-    </ConfigProvider>
+      </ConfigProvider>
+    </AuthProvider>
   );
 };
 
