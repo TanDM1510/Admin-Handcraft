@@ -30,36 +30,22 @@ const OrdersView = () => {
         }
       );
       setTotal(response.total_count);
-      console.log(response.orders);
-      const data = response.orders.filter((p) => p.status !== 5);
-      cache.current[filters.page] = data;
-
-      setData(data);
+      cache.current[filters.page] = response.orders;
+      setData(response.orders);
     } catch (error) {
       console.error("Error fetching data", error);
     } finally {
       setIsLoading(false);
     }
   };
-  const fetchUser = async () => {
-    const response = await axiosClient.get("http://34.126.177.133:8088/user");
-    console.log(response);
-  };
+
   useEffect(() => {
     if (cache.current[page]) {
       setData(cache.current[page]);
     } else {
       fetchData();
-      fetchUser();
     }
   }, [page]);
-
-  const handleChange = (filters) => {
-    console.log("Selected filters:", filters);
-    setPage(1);
-    cache.current = {};
-    fetchData({ ...filters, page: 1 });
-  };
 
   const onChange = (pageNumber) => {
     console.log("Page:", pageNumber);

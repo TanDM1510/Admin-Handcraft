@@ -10,9 +10,11 @@ import io from "socket.io-client";
 
 const ChatView = () => {
   const [listMessage, setListMessage] = useState([]);
+  const [listMessageUser, setListMessageUser] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [socket, setSocket] = useState(null);
+  const [idChat, setIdChat] = useState("");
 
   useEffect(() => {
     const newSocket = io("https://prm-socket.webbythien.com");
@@ -21,8 +23,7 @@ const ChatView = () => {
       newSocket.emit("subscribe", { room_id: "0" });
       newSocket.on("message", (data) => {
         console.log("message: ", data);
-        setListMessage((prevMessages) => [data, ...prevMessages]);
-        fetchData();
+        fetchData(idChat);
       });
     });
 
@@ -41,11 +42,26 @@ const ChatView = () => {
     };
   }, []);
 
-  const fetchData = async () => {
+  const fetchDataMessage = async () => {
     setIsLoading(true);
     try {
       const response = await axiosClient.get(
-        "https://prm-api.webbythien.com/v1/api/chat/18"
+        "https://prm-api.webbythien.com/v1/api/chat/admin"
+      );
+      setListMessageUser(response);
+      console.log(response);
+    } catch (error) {
+      console.error("Error fetching chat data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchData = async (idChat) => {
+    setIsLoading(true);
+    try {
+      const response = await axiosClient.get(
+        `https://prm-api.webbythien.com/v1/api/chat/${idChat}`
       );
       setListMessage(response);
       console.log(response);
@@ -57,8 +73,9 @@ const ChatView = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(idChat);
+    fetchDataMessage();
+  }, [idChat]);
 
   const handlePostMessage = async () => {
     setIsLoading(true);
@@ -67,13 +84,14 @@ const ChatView = () => {
         "https://prm-api.webbythien.com/v1/api/chat",
         {
           sender_id: 0,
-          reciever_id: 18,
+          reciever_id: idChat,
           message: newMessage,
         }
       );
       if (response) {
         setNewMessage("");
-        fetchData();
+        // setListMessage((prevMessages) => [newMessage, ...prevMessages]);
+        fetchData(idChat);
       }
     } catch (error) {
       console.error("Error posting message:", error);
@@ -83,10 +101,10 @@ const ChatView = () => {
   };
 
   return (
-    <div className="w-full h-screen flex lg:flex-row flex-col">
+    <div className="w-full h-screen flex lg:flex-row flex-col overflow-hidden">
       <div className="lg:w-1/4 w-full h-full border-r border-gray-200">
         <NavChatSider />
-        <UsersList />
+        <UsersList users={listMessageUser} setIdChat={setIdChat} />
       </div>
       <div className="lg:w-3/4 w-full h-full sticky top-0">
         <NavChat />

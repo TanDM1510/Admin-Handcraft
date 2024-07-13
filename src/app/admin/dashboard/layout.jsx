@@ -2,7 +2,10 @@
 
 import React, { useState } from "react";
 import {
+  BulbOutlined,
   DesktopOutlined,
+  LogoutOutlined,
+  MessageFilled,
   ProfileOutlined,
   ShopOutlined,
   TruckOutlined,
@@ -42,6 +45,7 @@ const items = [
     "9",
     <TruckOutlined />
   ),
+  getItem("/chat", "Nhắn tin", "10", <MessageFilled />),
 ];
 
 const DashBoardLayout = ({ children }) => {
@@ -119,14 +123,14 @@ const DashBoardLayout = ({ children }) => {
                   onClick={handleLogout}
                   className="font-normal text-xl text-center custom-font "
                 >
-                  Logout
+                  Đăng xuất
                 </button>
               ) : (
                 <button
                   onClick={handleLogout}
                   className="font-normal text-xl text-center custom-font "
                 >
-                  Q
+                  <LogoutOutlined className="text-red-600" />
                 </button>
               )}
             </div>
