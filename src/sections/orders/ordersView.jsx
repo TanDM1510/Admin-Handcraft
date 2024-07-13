@@ -5,7 +5,7 @@ import { Modal, Pagination, message, Spin } from "antd";
 // Import library
 import axiosClient from "@/utils/customeAxios";
 import OrdersHeader from "./OrdersHeader";
-import OrdersFilter from "./OrdersFilter";
+
 import OrdersTable from "./OrdersTable";
 
 const OrdersView = () => {
@@ -56,16 +56,15 @@ const OrdersView = () => {
     if (!selectedOrder || selectedStatus === null) return;
 
     try {
-      const response = await axiosClient.put(
-        `https://prm-api.webbythien.com/v1/api/order/${selectedOrder}`,
-        { status: selectedStatus }
+      const response = await axiosClient.post(
+        `https://prm-api.webbythien.com/v1/api/order/admin/confirm/${selectedOrder}`
       );
-      console.log("Updated Order Status Response:", response.data);
-      message.success("Cập nhật trạng thái đơn hàng thành công");
+
+      message.success("Xác nhận  đơn hàng thành công");
       fetchData({ page, per_page });
     } catch (error) {
       console.error("Error updating order status:", error);
-      message.error("Đơn hàng đã bị loại");
+      message.error("Đã có lỗi xảy ra vui lòng thử lại sau");
     } finally {
       setIsModalVisible(false);
       setSelectedOrder(null);
@@ -104,14 +103,14 @@ const OrdersView = () => {
         onChange={onChange}
       />
       <Modal
-        title="Xác nhận cập nhật trạng thái"
+        title="Xác nhận trạng thái đơn hàng"
         open={isModalVisible}
         onOk={handleUpdateStatus}
         onCancel={handleCancel}
         okText="Cập nhật"
         cancelText="Hủy"
       >
-        <p>Bạn có chắc chắn muốn cập nhật trạng thái đơn hàng này?</p>
+        <p>Bạn có chắc chắn muốn xác nhận trạng thái đơn hàng này?</p>
       </Modal>
     </>
   );
