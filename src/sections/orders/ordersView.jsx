@@ -65,7 +65,7 @@ const OrdersView = () => {
       fetchData({ page, per_page });
     } catch (error) {
       console.error("Error updating order status:", error);
-      message.error("Cập nhật trạng thái đơn hàng thất bại");
+      message.error("Đơn hàng đã bị loại");
     } finally {
       setIsModalVisible(false);
       setSelectedOrder(null);
