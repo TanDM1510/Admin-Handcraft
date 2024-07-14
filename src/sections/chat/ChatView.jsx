@@ -2,20 +2,17 @@
 import { useEffect, useState } from "react";
 import UsersList from "./UsersList";
 import NavChatSider from "./NavChatSider";
-import NavChat from "./NavChat";
-import InputChat from "./InputChat";
-import ChatContent from "./ChatContent";
 import axiosClient from "@/utils/customeAxios";
 import io from "socket.io-client";
 
-const ChatView = () => {
-  const [listMessage, setListMessage] = useState([]);
+const ChatView = ({ children }) => {
   const [listMessageUser, setListMessageUser] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [socket, setSocket] = useState(null);
-  const [idChat, setIdChat] = useState("");
 
+  const [idChat, setIdChat] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [listMessage, setListMessage] = useState([]);
+  const [socket, setSocket] = useState(null);
   useEffect(() => {
     const newSocket = io("https://prm-socket.webbythien.com");
     newSocket.on("connect", () => {
@@ -23,7 +20,7 @@ const ChatView = () => {
       newSocket.emit("subscribe", { room_id: "0" });
       newSocket.on("message", (data) => {
         console.log("message: ", data);
-        fetchData(idChat);
+        setListMessage((prevListMessage) => [data, ...prevListMessage]);
       });
     });
 
@@ -56,49 +53,9 @@ const ChatView = () => {
       setIsLoading(false);
     }
   };
-
-  const fetchData = async (idChat) => {
-    setIsLoading(true);
-    try {
-      const response = await axiosClient.get(
-        `https://prm-api.webbythien.com/v1/api/chat/${idChat}`
-      );
-      setListMessage(response);
-      console.log(response);
-    } catch (error) {
-      console.error("Error fetching chat data:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchData(idChat);
     fetchDataMessage();
-  }, [idChat]);
-
-  const handlePostMessage = async () => {
-    setIsLoading(true);
-    try {
-      const response = await axiosClient.post(
-        "https://prm-api.webbythien.com/v1/api/chat",
-        {
-          sender_id: 0,
-          reciever_id: idChat,
-          message: newMessage,
-        }
-      );
-      if (response) {
-        setNewMessage("");
-        // setListMessage((prevMessages) => [newMessage, ...prevMessages]);
-        fetchData(idChat);
-      }
-    } catch (error) {
-      console.error("Error posting message:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  }, []);
 
   return (
     <div className="w-full h-screen flex lg:flex-row flex-col overflow-hidden">
@@ -106,21 +63,7 @@ const ChatView = () => {
         <NavChatSider />
         <UsersList users={listMessageUser} setIdChat={setIdChat} />
       </div>
-      <div className="lg:w-3/4 w-full h-full sticky top-0">
-        <NavChat />
-        {isLoading ? (
-          <div className="flex justify-center items-center h-full">
-            <p>Loading...</p>
-          </div>
-        ) : (
-          <ChatContent listMessage={listMessage} />
-        )}
-        <InputChat
-          newMessage={newMessage}
-          setNewMessage={setNewMessage}
-          handlePostMessage={handlePostMessage}
-        />
-      </div>
+      {children}
     </div>
   );
 };
