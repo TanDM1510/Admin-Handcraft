@@ -58,6 +58,7 @@ const DashBoardLayout = ({ children }) => {
     localStorage.clear("authToken");
     router.push("/auth");
   };
+
   return (
     <AuthProvider>
       <ConfigProvider
