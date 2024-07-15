@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
   }, []);
 
   return (
-    <div className="w-full h-screen flex lg:flex-row flex-col overflow-hidden">
+    <div className="w-full h-screen flex lg:flex-row flex-col">
       <div className="lg:w-1/4 w-full h-full border-r border-gray-200">
         <NavChatSider />
         <UsersList users={listMessageUser} />

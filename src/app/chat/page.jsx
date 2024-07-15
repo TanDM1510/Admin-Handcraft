@@ -4,7 +4,7 @@ export const metadata = {
 const page = () => {
   return (
     <div>
-      <p>Hello world</p>
+      <p></p>
     </div>
   );
 };
