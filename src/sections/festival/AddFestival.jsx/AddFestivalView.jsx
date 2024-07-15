@@ -44,7 +44,6 @@ const AddFestivalView = () => {
         "https://prm-api.webbythien.com/v1/api/festival",
         festival
       );
-      console.log("Festival added successfully:", response);
       message.success("Thêm lễ hội thành công ");
     } catch (error) {
       console.error("Error adding festival:", error);

@@ -15,7 +15,6 @@ const OrderDetailView = ({ id }) => {
     );
     setData(response);
     setIsLoading(true);
-    console.log(response);
   };
 
   useEffect(() => {

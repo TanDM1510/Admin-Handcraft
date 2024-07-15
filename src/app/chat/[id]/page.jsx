@@ -3,6 +3,7 @@ import ChatContent from "@/sections/chat/ChatContent";
 import InputChat from "@/sections/chat/InputChat";
 import NavChat from "@/sections/chat/NavChat";
 import axiosClient from "@/utils/customeAxios";
+import { Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 const Page = ({ params }) => {
@@ -19,7 +20,8 @@ const Page = ({ params }) => {
       newSocket.off("message");
       newSocket.on("message", (data) => {
         console.log("message: ", data);
-        setListMessage((prevListMessage) => [data, ...prevListMessage]);
+
+        fetchData(id);
       });
     });
     newSocket.on("disconnect", () => {
@@ -73,12 +75,30 @@ const Page = ({ params }) => {
       setIsLoading(false);
     }
   };
+  const [listMessageUser, setListMessageUser] = useState([]);
+  const fetchDataMessage = async () => {
+    try {
+      const response = await axiosClient.get(
+        "https://prm-api.webbythien.com/v1/api/chat/admin"
+      );
+      const selectUser = response.find((i) => i.user_id == id);
+      setListMessageUser(selectUser);
+      console.log(selectUser);
+    } catch (error) {
+      console.error("Error fetching chat data:", error);
+    } finally {
+    }
+  };
+  useEffect(() => {
+    fetchDataMessage();
+  }, []);
+
   return (
-    <div className="lg:w-3/4 w-full h-full sticky top-0">
-      <NavChat />
+    <div className="lg:w-3/4 w-full h-full sticky top-0 lg:overflow-hidden">
+      <NavChat user={listMessageUser} />
       {isLoading ? (
         <div className="flex justify-center items-center h-full">
-          <p>Loading...</p>
+          <Spin />
         </div>
       ) : (
         <ChatContent listMessage={listMessage} />

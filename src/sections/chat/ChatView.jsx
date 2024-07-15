@@ -8,7 +8,6 @@ import io from "socket.io-client";
 const ChatView = ({ children }) => {
   const [listMessageUser, setListMessageUser] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-
   const [idChat, setIdChat] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [listMessage, setListMessage] = useState([]);
@@ -31,14 +30,11 @@ const ChatView = ({ children }) => {
     newSocket.on("error", (error) => {
       console.error("Socket error:", error);
     });
-
     setSocket(newSocket);
-
     return () => {
       newSocket.disconnect();
     };
   }, []);
-
   const fetchDataMessage = async () => {
     setIsLoading(true);
     try {

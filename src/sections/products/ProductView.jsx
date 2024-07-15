@@ -64,7 +64,6 @@ const ProductsView = () => {
   }, [page]);
 
   const handleChange = (filters) => {
-    console.log("Selected filters:", filters);
     setPage(1); // Reset to first page
     cache.current = {}; // Clear cache
     setStatus(filters.status);
@@ -94,7 +93,7 @@ const ProductsView = () => {
             images: ["tandeptrai"],
           }
         );
-        console.log("Updated Product Response:", response.data);
+
         message.success("Xóa sản phẩm thành công");
         fetchData({ status, page, page_size });
       }

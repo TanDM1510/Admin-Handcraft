@@ -20,25 +20,19 @@ const UpdateFestivalView = ({ id }) => {
     repeat_yearly: null,
     img: [],
   });
-  console.log(fileList);
   const festivalId = id.id;
-
   useEffect(() => {
     const fetchFestivalData = async () => {
       try {
         const response = await axiosClient.get(
           `https://prm-api.webbythien.com/v1/api/festival`
         );
-
         if (response) {
           const selectedFestival = response.data.find(
             (fest) => fest.id == festivalId
           );
-          console.log(selectedFestival);
-
           if (selectedFestival) {
             setFestival(selectedFestival);
-
             setFileList({
               uid: selectedFestival.id,
               name: selectedFestival.image,
@@ -98,7 +92,6 @@ const UpdateFestivalView = ({ id }) => {
           images: fileList,
         }
       );
-
       message.success("Cập nhật lễ hội thành công");
     } catch (error) {
       message.error("Cập nhật lễ hội thất bại");
