@@ -32,9 +32,9 @@ const FestivalInformation = ({ festival }) => {
         <p className="mb-6 text-lg">
           <b>Lặp lại trong năm</b> :{" "}
           {festival?.repeat_year ? (
-            <Tag color="green">Có</Tag>
-          ) : (
             <Tag color="red">Không</Tag>
+          ) : (
+            <Tag color="green">Có</Tag>
           )}
         </p>
       </div>
