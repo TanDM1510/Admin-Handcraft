@@ -1,11 +1,15 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
+import Link from "next/link";
 
 const NavChatSider = ({ isActive }) => {
   return (
     <div className="h-[25vh] ">
       {" "}
-      <h1 className="font-bold text-2xl pt-3 pl-2">Đoạn chat</h1>
+      <Link href={"/admin/dashboard"}>
+        {" "}
+        <h1 className="font-bold text-3xl px-3 custom-font pt-3">Bamboo</h1>
+      </Link>{" "}
       <div className="w-full flex justify-center items-center flex-col gap-5 border-b border-gray-200 pb-5">
         {" "}
         <Input
