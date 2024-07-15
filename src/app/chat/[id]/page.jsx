@@ -3,6 +3,7 @@ import ChatContent from "@/sections/chat/ChatContent";
 import InputChat from "@/sections/chat/InputChat";
 import NavChat from "@/sections/chat/NavChat";
 import axiosClient from "@/utils/customeAxios";
+import { sendTestFCMNotification } from "@/utils/FCM";
 import { Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
@@ -68,6 +69,7 @@ const Page = ({ params }) => {
       if (response) {
         setNewMessage("");
         fetchData(id);
+        sendTestFCMNotification("Thông báo mới", newMessage);
       }
     } catch (error) {
       console.error("Error posting message:", error);

@@ -39,7 +39,7 @@ const NavChat = ({ user }) => {
             icon={<UserAddOutlined />}
           />
         )}
-        <p className="font-bold text-base uppercase">{user.username}</p>
+        <p className="font-bold text-base">{user.email || user.username}</p>
       </div>
       <div className="flex gap-10 items-center">
         <PhoneFilled

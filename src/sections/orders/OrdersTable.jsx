@@ -31,9 +31,16 @@ const OrdersTable = ({ data, showConfirmModal }) => {
     showConfirmModal(id, value);
   };
 
+  const hasEmail = data.some(item => item.email);
+
+
   return (
     <Table dataSource={data} rowKey="id" pagination={false}>
-      <Column title="Tên khách hàng" dataIndex="username" key="username" />
+      {hasEmail ? (
+        <Column title="Email" dataIndex="email" key="email" />
+      ) : (
+        <Column title="Tên khách hàng" dataIndex="username" key="username" />
+      )}
       <Column title="Địa chỉ khách hàng" dataIndex="address" key="address" />
       <Column
         title="Tổng tiền đơn hàng"
