@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BulbOutlined,
   DesktopOutlined,
@@ -10,10 +10,11 @@ import {
   ShopOutlined,
   TruckOutlined,
 } from "@ant-design/icons";
-import { Breadcrumb, ConfigProvider, Layout, Menu, theme } from "antd";
+import { Breadcrumb, ConfigProvider, Layout, Menu, message, theme } from "antd";
 import Link from "next/link";
 import AuthProvider from "@/sections/auth-provider/AuthProvider";
 import { useRouter } from "next/navigation";
+import { io } from "socket.io-client";
 const { Content, Footer, Sider } = Layout;
 
 function getItem(href, label, key, icon, children) {
@@ -58,6 +59,31 @@ const DashBoardLayout = ({ children }) => {
     localStorage.clear("authToken");
     router.push("/auth");
   };
+
+  const [socket, setSocket] = useState(null);
+  useEffect(() => {
+    const newSocket = io("https://prm-socket.webbythien.com");
+    newSocket.on("connect", () => {
+      console.log("Connected to the Socket.io server", newSocket.id);
+      newSocket.emit("subscribe", { room_id: "0" });
+      newSocket.off("notification ");
+      newSocket.on("notification ", (data) => {
+        console.log("notification : ", data);
+        message.success(data);
+      });
+    });
+    newSocket.on("disconnect", () => {
+      console.log("Disconnected from the Socket.io server", newSocket.id);
+    });
+
+    newSocket.on("error", (error) => {
+      console.error("Socket error:", error);
+    });
+    setSocket(newSocket);
+    return () => {
+      newSocket.disconnect();
+    };
+  }, []);
 
   return (
     <AuthProvider>

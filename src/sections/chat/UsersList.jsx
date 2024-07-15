@@ -13,20 +13,35 @@ const UsersList = ({ users }) => {
             key={index}
             className="cursor-pointer w-[calc(100%-20px)] flex gap-10 items-center hover:bg-blue-50  p-4 rounded-2xl"
           >
-            <Avatar
-              style={{
-                backgroundColor: "olive",
-              }}
-              size={{
-                xs: 56,
-                sm: 56,
-                md: 56,
-                lg: 56,
-                xl: 56,
-                xxl: 56,
-              }}
-              icon={<UserAddOutlined />}
-            />
+            {user.url_avatar ? (
+              <Avatar
+                src={user.url_avatar}
+                size={{
+                  xs: 56,
+                  sm: 56,
+                  md: 56,
+                  lg: 56,
+                  xl: 56,
+                  xxl: 56,
+                }}
+              />
+            ) : (
+              <Avatar
+                style={{
+                  backgroundColor: "olive",
+                }}
+                size={{
+                  xs: 56,
+                  sm: 56,
+                  md: 56,
+                  lg: 56,
+                  xl: 56,
+                  xxl: 56,
+                }}
+                icon={<UserAddOutlined />}
+              />
+            )}
+
             <div className="flex flex-col">
               <p className="font-bold text-base">{user.username}</p>
               <p className="text-sm text-gray-400">{user.message}</p>
