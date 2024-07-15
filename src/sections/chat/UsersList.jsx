@@ -42,9 +42,9 @@ const UsersList = ({ users }) => {
               />
             )}
 
-            <div className="flex flex-col">
-              <p className="font-bold text-base">{user.username}</p>
-              <p className="text-sm text-gray-400">{user.message}</p>
+            <div className="flex-1 min-w-0">
+              <p className="font-bold text-base truncate">{user.email || user.username}</p>
+              <p className="text-sm text-gray-400 truncate">{user.message}</p>
             </div>
           </Link>
         ))}

@@ -25,7 +25,7 @@ const InputChat = ({ newMessage, setNewMessage, handlePostMessage }) => {
             className="text-blue-400 cursor-pointer"
           />
         }
-        placeholder=" Tìm kiếm trên chat sẽ"
+        placeholder="Tìm kiếm đoạn chat"
         value={newMessage}
         defaultValue={newMessage}
         onChange={(e) => setNewMessage(e.target.value)}

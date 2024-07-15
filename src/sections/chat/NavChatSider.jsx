@@ -17,7 +17,7 @@ const NavChatSider = ({ isActive }) => {
           prefix={<SearchOutlined />}
           placeholder=" Tìm kiếm trên chat sẽ"
         />
-        <div className="flex   w-full justify-center">
+        <div className="flex w-full justify-center">
           <p
             className={
               isActive

@@ -20,6 +20,10 @@ const OrderDetailView = ({ id }) => {
   useEffect(() => {
     fetchData();
   }, [orderId]);
+
+  const hasEmail = data?.order?.email;
+
+
   return (
     <div>
       {isLoading ? (
@@ -28,12 +32,22 @@ const OrderDetailView = ({ id }) => {
 
           <div className="flex  flex-col w-full gap-5 rounded-xl border p-10 mt-5">
             <h2 className="font-semibold text-2xl mb-5 ">
-              Thông tin người đặt đơn hàng {data?.order.id}
+              Thông tin người đặt đơn hàng #{data?.order.id}
             </h2>
             <div className="w-full flex gap-3">
               <div className="w-full">
-                <label>Tên người đặt</label>
-                <Input defaultValue={data?.order?.user_id} disabled />
+
+                {hasEmail ? (
+                  <>
+                    <label>Mail người đặt</label>
+                    <Input defaultValue={data?.order?.email} disabled />
+                  </>)
+                  :
+                  (<>
+                    <label>Tên người đặt</label>
+                    <Input defaultValue={data?.order?.username} disabled />
+                  </>)
+                }
               </div>
               <div className="w-full">
                 <label>Số điện thoại người đặt</label>

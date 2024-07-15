@@ -10,7 +10,7 @@ import {
   ShopOutlined,
   TruckOutlined,
 } from "@ant-design/icons";
-import { Breadcrumb, ConfigProvider, Layout, Menu, message, theme } from "antd";
+import { Breadcrumb, ConfigProvider, Layout, Menu, message, Modal, theme, Input } from "antd";
 import Link from "next/link";
 import AuthProvider from "@/sections/auth-provider/AuthProvider";
 import { useRouter } from "next/navigation";
@@ -49,6 +49,7 @@ const items = [
   getItem("/chat", "Nhắn tin", "10", <MessageFilled />),
 ];
 
+
 const DashBoardLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -84,6 +85,27 @@ const DashBoardLayout = ({ children }) => {
       newSocket.disconnect();
     };
   }, []);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [footerText, setFooterText] = useState("");
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleInputChange = (e) => {
+    const newText = e.target.value;
+    setFooterText(newText);
+    localStorage.setItem("footerText", newText);
+  };
 
   return (
     <AuthProvider>
@@ -190,12 +212,16 @@ const DashBoardLayout = ({ children }) => {
               style={{
                 textAlign: "center",
               }}
+              onClick={showModal}
             >
               Bamboo ©{new Date().getFullYear()}
             </Footer>
           </Layout>
         </Layout>
       </ConfigProvider>
+      <Modal title="Edit Footer Text" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <Input value={footerText} onChange={handleInputChange} />
+      </Modal>
     </AuthProvider>
   );
 };

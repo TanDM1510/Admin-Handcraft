@@ -7,7 +7,7 @@ import axiosClient from "@/utils/customeAxios";
 import OrdersHeader from "./OrdersHeader";
 
 import OrdersTable from "./OrdersTable";
-import axios from "axios";
+import { sendTestFCMNotification } from "@/utils/FCM";
 
 const OrdersView = () => {
   const [data, setData] = useState([]);
@@ -62,7 +62,7 @@ const OrdersView = () => {
       );
 
       message.success("Xác nhận đơn hàng thành công và thông báo đã được gửi.");
-      sendTestFCMNotification();
+      sendTestFCMNotification("Xác nhận đơn hàng", "Đơn hàng của bạn đã được xác nhận và đang được chuẩn bị giao.");
       fetchData({ page, per_page });
     } catch (error) {
       console.error("Error updating order status or sending FCM notification:", error);
@@ -71,33 +71,6 @@ const OrdersView = () => {
       setIsModalVisible(false);
       setSelectedOrder(null);
       setSelectedStatus(null);
-    }
-  };
-
-  const sendTestFCMNotification = async () => {
-    console.log("123");
-    try {
-      const fcmToken = "ya29.a0AXooCgvvLH3LVTHFqErlM8kcRH--fqbZo5hLt_mwuFsgbF4zfAbsRw2DvNfAgG8ii8XTXeos1hmb6UBIIJ3Tf9FagErE_wALzoV8eDWBnKFH7sQAK8dFeEh70NgrpznVUyC63cw086itBOMQmK21yTGIxpLhXlSqaCdzaCgYKAbcSARISFQHGX2MiRrFPxZFPpcuGOCVdJ-DHmg0171"; // Replace with your actual FCM server key
-      const response = await axios.post('https://fcm.googleapis.com/v1/projects/prm392-craft-management/messages:send', {
-        "message": {
-          "token": "fF2sompyRmuycuv4X54tLi:APA91bHAliwgBRRxLd-FiRT_TLXPu_s0P5Cox4QxT3Cg1ROsCiVdDPVQHiEecjAsOpLqSjguc-vfhHClboFdIdC5dl8GQZH8AwsE5z-k-cO17xpU7knIK62QdONwZrNjst0xl4gVhbf_",
-          "notification": {
-            "body": "Xác nhận đơn hàng thành công!",
-            "title": "Thông báo mới"
-          }
-        }
-      }, {
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${fcmToken}`
-        }
-      });
-
-      console.log("FCM Notification sent successfully:", response.data);
-      // Handle success response
-    } catch (error) {
-      console.error("Error sending FCM Notification:", error);
-      // Handle error
     }
   };
 
